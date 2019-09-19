@@ -1,0 +1,13 @@
+{
+  "name": "part1-any-code",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "start": "static"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "node-static": "^0.7.11"
+  }
+}
