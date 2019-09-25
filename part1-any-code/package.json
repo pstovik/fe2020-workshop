@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start": "static"
+    "start": "static ./web"
   },
   "author": "",
   "license": "UNLICENSED",

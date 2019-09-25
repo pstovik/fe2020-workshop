@@ -10,4 +10,4 @@
 ## how to use this repo
 - `npm i` to install dev/dependencies
 - `npm start` to run the static server
-- open url [http://127.0.0.1:8080/web], should show boilerplate page
+- open url [http://127.0.0.1:8080], should show boilerplate page
