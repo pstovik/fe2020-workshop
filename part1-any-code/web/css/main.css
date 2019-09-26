@@ -98,24 +98,63 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-/* https://tobiasahlin.com/blog/common-flexbox-patterns/#3x3-grid-constrained-proportions-11 */
+
+/*
+layout based on
+https://tobiasahlin.com/blog/common-flexbox-patterns/#3x3-grid-constrained-proportions-11
+*/
+
 .game-board {
   /* border: 1px solid black; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  background: #f7f7f7;
+  background: rgb(170, 125, 0);
 }
 
 .tile {
   width: 32%;
+  height: 32%;
   padding-bottom: 32%; /* Same as width, sets height */
   margin-bottom: 2%; /* (100-32*3)/2 */
   position: relative;
 
-  background-color: #A2CBFA;
-  border: 1px solid #4390E1;
+  background-color: rgb(58, 179, 64);
+  border: 1px solid rgb(28, 97, 37);
+}
+
+.tile::before, .tile::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  /* https://leaverou.github.io/css3patterns/#carbon-fibre */
+  background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#282828;
+  background-size:16px 16px;
+}
+
+.tile.tile--straight::before {
+  width: 100%;
+  height: 40%;
+  top: 30%;
+}
+
+.tile.tile--bend::before {
+  width: 70%;
+  height: 40%;
+  top: 30%;
+}
+
+.tile.tile--bend::after {
+  width: 40%;
+  height: 70%;
+  left: 30%;
 }
 
 /* ==========================================================================
