@@ -111,17 +111,16 @@ https://tobiasahlin.com/blog/common-flexbox-patterns/#3x3-grid-constrained-propo
   justify-content: space-between;
 
   background: rgb(170, 125, 0);
+  overflow: hidden; /* rotated tiles showing scrollbar fix */
 }
 
 .tile {
-  width: 32%;
-  height: 32%;
-  padding-bottom: 32%; /* Same as width, sets height */
-  margin-bottom: 2%; /* (100-32*3)/2 */
+  width: 32.5%;
+  padding-bottom: 32.5%; /* Same as width, sets height */
+  margin-bottom: 1.25%; /* (100-32.5*3)/2 */
   position: relative;
 
   background-color: rgb(58, 179, 64);
-  border: 1px solid rgb(28, 97, 37);
 }
 
 .tile::before, .tile::after {
@@ -155,6 +154,18 @@ https://tobiasahlin.com/blog/common-flexbox-patterns/#3x3-grid-constrained-propo
   width: 40%;
   height: 70%;
   left: 30%;
+}
+
+.tile.tile--rotate-90 {
+  transform: rotate(90deg);
+}
+
+.tile.tile--rotate-180 {
+  transform: rotate(180deg);
+}
+
+.tile.tile--rotate-270 {
+  transform: rotate(270deg);
 }
 
 /* ==========================================================================
