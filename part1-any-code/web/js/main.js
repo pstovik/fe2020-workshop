@@ -1,5 +1,5 @@
 
-document.addEventListener("click", (event) => {
+document.getElementsByClassName("game-board")[0].addEventListener("click", (event) => {
     // console.log(event.target);
     const element = event.target;
 
