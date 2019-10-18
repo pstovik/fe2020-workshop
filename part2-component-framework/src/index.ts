@@ -1,9 +1,5 @@
 import { Application } from "./application";
 
-const app = new Application({
-    renderer: html => {
-        document.body.innerHTML = html;
-    }
-});
+const app = new Application();
 console.log("Initial render");
-app.render();
+document.body.innerHTML = app.render();

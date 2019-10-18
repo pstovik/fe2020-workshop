@@ -1,15 +1,7 @@
-export interface IAppRenderer {
-    (html: string): void;
-}
+import gameBoard from "./components/game-board";
 
 export class Application {
-    private _renderer: IAppRenderer;
-
-    constructor(options: { renderer: IAppRenderer }) {
-        this._renderer = options.renderer;
-    }
-
-    render() {
-        this._renderer("<h1>HERE</h1>");
+    render(): string {
+        return gameBoard();
     }
 }
