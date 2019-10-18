@@ -1,15 +1,4 @@
-export enum TileType {
-    Empty,
-    Straight,
-    Bend
-}
-
-export enum TileRotation {
-    R0 = 0,
-    R90 = 90,
-    R180 = 180,
-    R270 = 270
-}
+import { TileType, TileRotation } from "../iGameState";
 
 export default function tile(params: { type: TileType; rotation?: TileRotation }): string {
     const rotation = params.rotation === undefined ? TileRotation.R0 : params.rotation;
