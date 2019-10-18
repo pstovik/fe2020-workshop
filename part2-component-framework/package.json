@@ -1,0 +1,25 @@
+{
+  "name": "part2-components-framework",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index",
+  "scripts": {
+    "watch": "bb"
+  },
+  "author": "p.stovik",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "bobril": {
+    "compilerOptions": {
+      "declaration": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true
+    }
+  },
+  "devDependencies": {
+    "bobril-build": "^2.2.0"
+  }
+}
