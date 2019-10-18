@@ -1,1 +1,9 @@
-document.body.innerHTML = "<h1>HERE</h1>";
+import { Application } from "./application";
+
+const app = new Application({
+    renderer: html => {
+        document.body.innerHTML = html;
+    }
+});
+console.log("Initial render");
+app.render();

@@ -19,7 +19,7 @@
     "noEmitHelpers": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "preserveConstEnums": false,
     "reactNamespace": "b",

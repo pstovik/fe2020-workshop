@@ -1,5 +1,5 @@
 describe("someManager", () => {
-    it("should fail", () => {
+    xit("should fail", () => {
         expect(false).toBeTruthy();
-    })
-})
+    });
+});
