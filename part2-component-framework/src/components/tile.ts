@@ -9,7 +9,7 @@ export interface IParams {
 }
 
 export default function Tile(params: IParams): string {
-    framework.onClick(params.componentId, params.onClick);
+    framework.componentClick(params.componentId, params.onClick);
     const rotation = params.rotation === undefined ? TileRotation.R0 : params.rotation;
     return `
         <div id="${params.componentId}" class="tile ${getTileCssClass(params.type)}" style="transform: rotate(${rotation}deg)"></div>
