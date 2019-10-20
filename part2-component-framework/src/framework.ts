@@ -11,6 +11,13 @@ export function componentClick(componentId: string, listener: () => void) {
     componentClickListeners[componentId] = listener;
 }
 
+export function componentStyle(style: string) {
+    const styleElement = document.createElement("style");
+    styleElement.innerHTML = style;
+    document.head.appendChild(styleElement);
+}
+
+// once to setup
 export function setup(htmlUpdater: () => string) {
     console.log("Register event listeners");
     document.addEventListener("click", processClick);
