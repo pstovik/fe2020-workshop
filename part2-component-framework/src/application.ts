@@ -1,5 +1,5 @@
-import gameBoard from "./components/game-board";
-import tile from "./components/tile";
+import GameBoard from "./components/game-board";
+import Tile from "./components/tile";
 import { TileType, TileRotation, IGameState } from "./iGameState";
 
 export class Application {
@@ -28,8 +28,17 @@ export class Application {
     }
 
     render(): string {
-        return gameBoard({
-            tiles: this._state.tiles.map<string>(t => tile(t))
+        return GameBoard({
+            tiles: this._state.tiles.map<string>((t, index) =>
+                Tile({
+                    componentId: `tile_${index}`,
+                    type: t.type,
+                    rotation: t.rotation,
+                    onClick() {
+                        console.log("clicked", index);
+                    }
+                })
+            )
         });
     }
 }

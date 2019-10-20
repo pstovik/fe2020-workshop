@@ -1,4 +1,4 @@
-export default function gameBoard(params: { tiles: string[] }): string {
+export default function GameBoard(params: { tiles: string[] }): string {
     return `
 <div class="game-board">
     ${params.tiles.join("")}
