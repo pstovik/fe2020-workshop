@@ -24,7 +24,8 @@ export class Application {
                         framework.update();
                     }
                 })
-            )
+            ),
+            stepCount: this._store.stepCount
         });
     }
 }

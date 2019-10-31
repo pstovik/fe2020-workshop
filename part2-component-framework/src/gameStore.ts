@@ -2,6 +2,7 @@ import { ITileState, TileType, TileRotation } from "./iGameState";
 
 export class GameStore {
     tiles: ITileState[] = [];
+    stepCount: number = 0;
 
     init(): void {
         this.tiles = [
@@ -23,6 +24,7 @@ export class GameStore {
         const tile = this.tiles[tileIndex];
 
         tile.rotation = this.getNextRotation(tile.rotation);
+        this.stepCount++;
     }
 
     // TODO - get and write score / connections
