@@ -10,6 +10,8 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "bobril": {
+    "bbVersion": "0.96.2",
+    "tsVersion": "3.6.4",
     "compilerOptions": {
       "declaration": true,
       "strict": true,

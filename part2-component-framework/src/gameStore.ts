@@ -25,6 +25,8 @@ export class GameStore {
         tile.rotation = this.getNextRotation(tile.rotation);
     }
 
+    // TODO - get and write score / connections
+
     private getNextRotation(currentRotation?: TileRotation): TileRotation {
         switch (currentRotation) {
             case undefined:
