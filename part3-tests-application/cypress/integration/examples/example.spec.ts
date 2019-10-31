@@ -23,7 +23,7 @@ function clickTile(index: number): void{
 
 function getNumberOfSteps() : Cypress.Chainable<JQuery<HTMLElement>> {
 
-    return cy.get("div.game-counter:first").invoke("text")       
+    return cy.get("div.game-counter").eq(0).invoke("text")       
 }
 
 function assertNumberOfSteps(expected: number): void {
