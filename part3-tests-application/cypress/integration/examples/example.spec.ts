@@ -23,11 +23,11 @@ function clickTile(index: number): void{
 
 function getNumberOfSteps() : Cypress.Chainable<JQuery<HTMLElement>> {
 
-    return cy.get("div.game-counter").invoke("text")       
+    return cy.get("div.game-counter:first").invoke("text")       
 }
 
 function assertNumberOfSteps(expected: number): void {
     getNumberOfSteps().should(currentValue => {
-        expect(currentValue).equals("Steps: " + expected.toString(), `${expected} was expected, but actual value is ${currentValue}`)
+        expect(currentValue).contains("Steps: " + expected.toString(), `${expected} was expected, but actual value is ${currentValue}`)
     })
 }
