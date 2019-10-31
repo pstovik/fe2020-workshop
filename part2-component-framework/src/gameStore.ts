@@ -114,8 +114,11 @@ export class GameStore {
     }
 
     private rotateConnectorsArray(array: boolean[], rotationOffset: number): boolean[] {
-        const arrayToCut = array.slice(0); // clone
-        const newBeginning = arrayToCut.splice(rotationOffset);
-        return newBeginning.concat(arrayToCut);
+        const result = array.slice(0); // clone
+        for (let i = 0; i < rotationOffset; i++) {
+            const value = result.pop() as boolean;
+            result.unshift(value);
+        }
+        return result;
     }
 }

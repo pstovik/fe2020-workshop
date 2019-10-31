@@ -84,5 +84,22 @@ describe("gameStore", () => {
                 expect(store.connectionCount).toBe(1);
             });
         });
+
+        describe("given tiles are connected in corner", () => {
+            it("should be 2", () => {
+                const store = new GameStore();
+                store.init([
+                    { type: TileType.Empty },
+                    { type: TileType.StraightLR },
+                    { type: TileType.BendLT, rotation: TileRotation.CW270 },
+
+                    { type: TileType.Empty },
+                    { type: TileType.Empty },
+                    { type: TileType.StraightLR, rotation: TileRotation.CW90 }
+                ]);
+
+                expect(store.connectionCount).toBe(2);
+            });
+        });
     });
 });

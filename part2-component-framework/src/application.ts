@@ -25,7 +25,8 @@ export class Application {
                     }
                 })
             ),
-            stepCount: this._store.stepCount
+            stepCount: this._store.stepCount,
+            connectionCount: this._store.connectionCount
         });
     }
 }
