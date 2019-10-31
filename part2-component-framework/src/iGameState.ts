@@ -9,13 +9,13 @@ export interface ITileState {
 
 export enum TileType {
     Empty,
-    Straight,
-    Bend
+    StraightLR,
+    BendLT
 }
 
 export enum TileRotation {
-    R0 = 0,
-    R90 = 90,
-    R180 = 180,
-    R270 = 270
+    None = 0,
+    CW90 = 90,
+    CW180 = 180,
+    CW270 = 270
 }

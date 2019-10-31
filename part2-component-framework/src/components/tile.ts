@@ -10,7 +10,7 @@ export interface IParams {
 
 export default function Tile(params: IParams): string {
     framework.componentClick(params.componentId, params.onClick);
-    const rotation = params.rotation === undefined ? TileRotation.R0 : params.rotation;
+    const rotation = params.rotation === undefined ? TileRotation.None : params.rotation;
     return `
         <div id="${params.componentId}"
              class="tile ${getTileCssClass(params.type)}"
@@ -23,9 +23,9 @@ function getTileCssClass(type: TileType): string {
     switch (type) {
         case TileType.Empty:
             return "";
-        case TileType.Straight:
+        case TileType.StraightLR:
             return "tile--straight";
-        case TileType.Bend:
+        case TileType.BendLT:
             return "tile--bend";
     }
     throw new Error(`Unknown type "${type}"`);
