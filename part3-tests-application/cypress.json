@@ -2,6 +2,7 @@
     "baseUrl": "http://localhost:8080",
     "viewportWidth": 1920,
     "viewportHeight": 1800,
+    "integrationFolder": "./spec",
     "testFiles": "**/*.spec.ts",
     "pluginsFile": "cypress/plugins/index.js",
     "supportFile": "cypress/support/index.ts"
