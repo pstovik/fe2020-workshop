@@ -1,34 +1,24 @@
-import { GameScorePanel } from "./gameScorePanel";
+import { GameTile } from "./gameTile";
 
 export class GameBoard {
-    width: number = 0 ;
-    height: number = 0; 
-    gameScorePanel: GameScorePanel;
-        
+    width: number = 0;
+    height: number = 0;
+
     constructor(width: number, height: number) {
-        this.width = width
-        this.height = height 
-        this.gameScorePanel = new GameScorePanel();       
+        this.width = width;
+        this.height = height;
+
     }
 
-    public rotateTile(x: number, y: number){
-        this.getTile(x, y).click();
+    public rotateTile(x: number, y: number) {
+        new GameTile(this.getIndex(x, y)).rotateTile();
     }
 
-    private getTile(x: number, y: number): Cypress.Chainable<JQuery<HTMLElement>> {
-        return cy.get('div[id=tile_'+ this.getIndex(x,y)+ ']') 
+    public assertActualRotation(x: number, y: number, angle: number) {
+        new GameTile(this.getIndex(x, y)).assertActualRotation(angle);
     }
 
-    private getIndex(x: number, y: number): number{
-        return (x*this.width + y)
+    private getIndex(x: number, y: number): number {
+        return (x * this.width + y);
     }
-
-    public assertNumberOfSteps(expectedScore: number): void {
-        this.gameScorePanel.stepsCounter.expectedScore(expectedScore);
-    }
-
-    public assertNumberOfConnection(expectedScore: number): void {
-        this.gameScorePanel.connectionCounter.expectedScore(expectedScore);
-    }
-
 }

@@ -6,8 +6,16 @@ export class GameScorePanel {
     public stepsCounter: GameCounter;
     public connectionCounter: GameCounter;
 
-    constructor(){
+    constructor() {
         this.stepsCounter = new GameCounter("Steps");
         this.connectionCounter = new GameCounter("Connections");
-    } 
+    }
+
+    public assertNumberOfSteps(expectedScore: number): void {
+        this.stepsCounter.expectedScore(expectedScore);
+    }
+
+    public assertNumberOfConnection(expectedScore: number): void {
+        this.connectionCounter.expectedScore(expectedScore);
+    }
 }
