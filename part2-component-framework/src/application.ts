@@ -20,7 +20,7 @@ export class Application {
                     rotation: t.rotation,
                     onClick: () => {
                         console.log("clicked", `tile_${index}`);
-                        this._store.rotateTile(index);
+                        this._store.tileClicked(index);
                         framework.update();
                     }
                 })

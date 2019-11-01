@@ -10,21 +10,30 @@ describe("gameStore", () => {
 
     it("should rotate tile by index", () => {
         const store = new GameStore();
-        store.init();
+        store.init([{ type: TileType.StraightLR }]);
 
         expect(store.tiles[0].rotation).toBeUndefined();
 
-        store.rotateTile(0);
+        store.tileClicked(0);
         expect(store.tiles[0].rotation).toBe(TileRotation.CW90);
 
-        store.rotateTile(0);
+        store.tileClicked(0);
         expect(store.tiles[0].rotation).toBe(TileRotation.CW180);
 
-        store.rotateTile(0);
+        store.tileClicked(0);
         expect(store.tiles[0].rotation).toBe(TileRotation.CW270);
 
-        store.rotateTile(0);
+        store.tileClicked(0);
         expect(store.tiles[0].rotation).toBe(TileRotation.None);
+    });
+
+    it("should not rotate empty tile", () => {
+        const store = new GameStore();
+        store.init([{ type: TileType.Empty }]);
+        expect(store.tiles[0].rotation).toBeUndefined();
+
+        store.tileClicked(0);
+        expect(store.tiles[0].rotation).toBeUndefined();
     });
 
     describe("connections counting", () => {

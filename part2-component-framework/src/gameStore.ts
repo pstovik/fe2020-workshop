@@ -28,8 +28,11 @@ export class GameStore {
         ];
     }
 
-    rotateTile(tileIndex: number): void {
+    tileClicked(tileIndex: number): void {
         const tile = this.tiles[tileIndex];
+        if (tile.type === TileType.Empty) {
+            return;
+        }
 
         tile.rotation = this.getNextRotation(tile.rotation);
         this.stepCount++;
