@@ -2,13 +2,16 @@ import GameBoard from "./components/game-board";
 import Tile from "./components/tile";
 import * as framework from "./framework";
 import { GameStore } from "./gameStore";
+import { deserializeTiles } from "./serialization";
+import { defaultGame } from "./defaultGame";
 
 export class Application {
     private _store: GameStore;
 
-    constructor() {
+    constructor(locationHash?: string) {
         this._store = new GameStore();
-        this._store.init();
+        const tiles = locationHash ? deserializeTiles(locationHash.substr(1)) : defaultGame();
+        this._store.init(tiles);
     }
 
     render(): string {
@@ -30,3 +33,8 @@ export class Application {
         });
     }
 }
+
+framework.componentStyle(`
+    body { max-width: 600px; }
+    html { background: rgb(170, 125, 0); }
+`);

@@ -1,10 +1,11 @@
 import { GameStore } from "../src/gameStore";
 import { TileRotation, TileType } from "../src/iGameState";
+import { defaultGame } from "../src/defaultGame";
 
 describe("gameStore", () => {
-    it("should init 9 tiles", () => {
+    it("should init default game", () => {
         const store = new GameStore();
-        store.init();
+        store.init(defaultGame());
         expect(store.tiles.length).toBe(9);
     });
 

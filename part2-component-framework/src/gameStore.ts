@@ -7,25 +7,9 @@ export class GameStore {
     stepCount: number = 0;
     connectionCount: number = 0;
 
-    init(tiles?: ITileState[]): void {
-        this.tiles = tiles || this.defaultGame();
+    init(tiles: ITileState[]): void {
+        this.tiles = tiles;
         this.calculateConnections();
-    }
-
-    private defaultGame(): ITileState[] {
-        return [
-            { type: TileType.Empty },
-            { type: TileType.StraightLR },
-            { type: TileType.BendLT, rotation: TileRotation.CW270 },
-
-            { type: TileType.Empty },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-
-            { type: TileType.Empty },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-            { type: TileType.Empty }
-        ];
     }
 
     tileClicked(tileIndex: number): void {

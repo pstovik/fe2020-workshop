@@ -19,12 +19,10 @@ framework.componentStyle(`
         flex-wrap: wrap;
         justify-content: space-between;
     
-        background: rgb(170, 125, 0);
         overflow: hidden; /* rotated tiles showing scrollbar fix */
     }
     
     .game-score {
-        background: rgb(170, 125, 0);
         font-size: 20px;
         padding: 5px;
     }
