@@ -18,6 +18,6 @@ describe("My first test", () => {
         gameArea.rotateTile(2,0)
     
         //then
-        assertNumberOfSteps(5)   
+        gameArea.assertNumberOfSteps(4)   
     });
 });
