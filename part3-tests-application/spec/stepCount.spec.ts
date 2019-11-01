@@ -1,8 +1,8 @@
-import { GameBoard } from "../cypress/components/gameBoard";
+import { GamePage } from "../cypress/pages/gamePage";
 import { serializeTiles } from "../src/dependencies";
 import { TileType, TileRotation } from "../../part2-component-framework/src/iGameState";
 
-let gameArea;
+let gamePage;
 
 beforeEach(() => {
     const tilesString = serializeTiles([
@@ -24,26 +24,26 @@ beforeEach(() => {
 
 describe("Check number of steps", () => {
     it("Non empty tiles", () => {
-        gameArea = new GameBoard(3, 3);
+        gamePage = new GamePage(3, 3);
 
         //when
-        gameArea.rotateTile(0, 1);
-        gameArea.rotateTile(0, 2);
-        gameArea.rotateTile(0, 1);
-        gameArea.rotateTile(0, 2);
+        gamePage.gameBoard.rotateTile(0, 1);
+        gamePage.gameBoard.rotateTile(0, 2);
+        gamePage.gameBoard.rotateTile(0, 1);
+        gamePage.gameBoard.rotateTile(0, 2);
 
         //then
-        gameArea.assertNumberOfSteps(4);
+        gamePage.gameScorePanel.assertNumberOfSteps(4);
     });
 
     it("Empty tiles", () => {
-        gameArea = new GameBoard(3, 3);
+        gamePage = new GamePage(3, 3);
 
         //when
-        gameArea.rotateTile(2, 0);
-        gameArea.rotateTile(0, 0);
+        gamePage.gameBoard.rotateTile(2, 0);
+        gamePage.gameBoard.rotateTile(0, 0);
 
         //then
-        gameArea.assertNumberOfSteps(0);
+        gamePage.gameScorePanel.assertNumberOfSteps(0);
     });
 });
