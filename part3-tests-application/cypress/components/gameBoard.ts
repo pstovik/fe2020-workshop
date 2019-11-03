@@ -7,10 +7,12 @@ export class GameBoard {
     constructor(width: number, height: number) {
         this.width = width;
         this.height = height;
-
     }
 
-    public rotateTile(x: number, y: number) {
+    public rotateTile(x: number, y: number, log: boolean = false) {
+        if (log) {
+            cy.log("Rotating tile [x=" + x + "][y=" + y + "]");
+        }
         new GameTile(this.getIndex(x, y)).rotateTile();
     }
 
@@ -19,6 +21,6 @@ export class GameBoard {
     }
 
     private getIndex(x: number, y: number): number {
-        return (x * this.width + y);
+        return x * this.width + y;
     }
 }

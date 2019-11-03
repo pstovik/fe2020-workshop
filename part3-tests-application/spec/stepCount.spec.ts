@@ -19,7 +19,6 @@ beforeEach(() => {
         { type: TileType.Empty }
     ]);
     cy.visit(`/#${tilesString}`);
-    cy.reload();
 });
 
 describe("Check number of steps", () => {
@@ -27,10 +26,10 @@ describe("Check number of steps", () => {
         gamePage = new GamePage(3, 3);
 
         //when
-        gamePage.gameBoard.rotateTile(0, 1);
-        gamePage.gameBoard.rotateTile(0, 2);
-        gamePage.gameBoard.rotateTile(0, 1);
-        gamePage.gameBoard.rotateTile(0, 2);
+        gamePage.gameBoard.rotateTile(0, 1, true);
+        gamePage.gameBoard.rotateTile(0, 2, true);
+        gamePage.gameBoard.rotateTile(0, 1, true);
+        gamePage.gameBoard.rotateTile(0, 2, true);
 
         //then
         gamePage.gameScorePanel.assertNumberOfSteps(4);
@@ -40,8 +39,8 @@ describe("Check number of steps", () => {
         gamePage = new GamePage(3, 3);
 
         //when
-        gamePage.gameBoard.rotateTile(2, 0);
-        gamePage.gameBoard.rotateTile(0, 0);
+        gamePage.gameBoard.rotateTile(2, 0, true);
+        gamePage.gameBoard.rotateTile(0, 0, true);
 
         //then
         gamePage.gameScorePanel.assertNumberOfSteps(0);

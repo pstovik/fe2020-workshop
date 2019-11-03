@@ -1,7 +1,6 @@
 import { GameCounter } from "./gameCounter";
 
 export class GameScorePanel {
-
     public selector = "div.game-score";
     public stepsCounter: GameCounter;
     public connectionCounter: GameCounter;
@@ -12,10 +11,10 @@ export class GameScorePanel {
     }
 
     public assertNumberOfSteps(expectedScore: number): void {
-        this.stepsCounter.expectedScore(expectedScore);
+        this.stepsCounter.shouldHaveScore(expectedScore);
     }
 
     public assertNumberOfConnection(expectedScore: number): void {
-        this.connectionCounter.expectedScore(expectedScore);
+        this.connectionCounter.shouldHaveScore(expectedScore);
     }
 }
