@@ -13,20 +13,27 @@ describe("Test base game funcionality", () => {
     gamePage.gameBoard.rotateTile(1, 1);
 
     //then    
-    gamePage.gameScorePanel.assertNumberOfSteps(1)
-    gamePage.gameScorePanel.assertNumberOfConnection(2)
+    AssertNumberOfStepsAndConection();
   });
 
   it("Test rotation tile on game board", () => {
 
     //given
-    gamePage.gameBoard.assertActualRotation(1, 1, 90);
+    AssertTileRotation(90);
 
     //when  
     gamePage.gameBoard.rotateTile(1, 1);
 
     //then
-    gamePage.gameBoard.assertActualRotation(1, 1, 180);
+    AssertTileRotation(180);
   });
-
 });
+
+function AssertNumberOfStepsAndConection(): void {
+  gamePage.gameScorePanel.assertNumberOfSteps(1)
+  gamePage.gameScorePanel.assertNumberOfConnection(2)
+}
+
+function AssertTileRotation(angle: number) {
+  gamePage.gameBoard.assertActualRotation(1, 1, angle);
+}

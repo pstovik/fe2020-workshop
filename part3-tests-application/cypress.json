@@ -8,6 +8,7 @@
     "supportFile": "cypress/support/index.ts",
 
     "env": {
-        "serverUrl": "/"        
+        "serverUrl": "/",
+        "serverUrlBeforeFinish": "/#B-90_S-0_B-270_B-180_S-90_B-0_B-90_S-180_B-270"        
     }
 }
