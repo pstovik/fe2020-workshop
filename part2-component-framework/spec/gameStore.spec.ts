@@ -1,5 +1,5 @@
 import { GameStore } from "../src/gameStore";
-import { TileRotation, TileType } from "../src/iGameState";
+import { TileRotation, TileType, ITileState, IGameState, InfiniteGameNumber } from "../src/iGameState";
 import { defaultGame } from "../src/defaultGame";
 
 describe("gameStore", () => {
@@ -11,7 +11,7 @@ describe("gameStore", () => {
 
     it("should rotate tile by index", () => {
         const store = new GameStore();
-        store.init([{ type: TileType.StraightLR }]);
+        store.init(gameWithTiles([{ type: TileType.StraightLR }]));
 
         expect(store.tiles[0].rotation).toBeUndefined();
 
@@ -30,7 +30,7 @@ describe("gameStore", () => {
 
     it("should not rotate empty tile", () => {
         const store = new GameStore();
-        store.init([{ type: TileType.Empty }]);
+        store.init(gameWithTiles([{ type: TileType.Empty }]));
         expect(store.tiles[0].rotation).toBeUndefined();
 
         store.tileClicked(0);
@@ -41,7 +41,7 @@ describe("gameStore", () => {
         describe("given empty tiles array", () => {
             it("should be 0", () => {
                 const store = new GameStore();
-                store.init([]);
+                store.init(gameWithTiles([]));
 
                 expect(store.connectionCount).toBe(0);
             });
@@ -50,7 +50,7 @@ describe("gameStore", () => {
         describe("given tiles are not connected", () => {
             it("should be 0", () => {
                 const store = new GameStore();
-                store.init([{ type: TileType.StraightLR }, { type: TileType.Empty }, { type: TileType.BendLT }]);
+                store.init(gameWithTiles([{ type: TileType.StraightLR }, { type: TileType.Empty }, { type: TileType.BendLT }]));
 
                 expect(store.connectionCount).toBe(0);
             });
@@ -59,7 +59,7 @@ describe("gameStore", () => {
         describe("given tiles are connected in one row", () => {
             it("should be 2", () => {
                 const store = new GameStore();
-                store.init([{ type: TileType.StraightLR }, { type: TileType.StraightLR }, { type: TileType.StraightLR }]);
+                store.init(gameWithTiles([{ type: TileType.StraightLR }, { type: TileType.StraightLR }, { type: TileType.StraightLR }]));
 
                 expect(store.connectionCount).toBe(2);
             });
@@ -68,13 +68,15 @@ describe("gameStore", () => {
         describe("given tiles are connected through the row break", () => {
             it("should be 0", () => {
                 const store = new GameStore();
-                store.init([
-                    { type: TileType.Empty },
-                    { type: TileType.Empty },
-                    { type: TileType.StraightLR },
+                store.init(
+                    gameWithTiles([
+                        { type: TileType.Empty },
+                        { type: TileType.Empty },
+                        { type: TileType.StraightLR },
 
-                    { type: TileType.StraightLR }
-                ]);
+                        { type: TileType.StraightLR }
+                    ])
+                );
 
                 expect(store.connectionCount).toBe(0);
             });
@@ -83,13 +85,15 @@ describe("gameStore", () => {
         describe("given tiles are connected between rows", () => {
             it("should be 1", () => {
                 const store = new GameStore();
-                store.init([
-                    { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-                    { type: TileType.Empty },
-                    { type: TileType.Empty },
+                store.init(
+                    gameWithTiles([
+                        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+                        { type: TileType.Empty },
+                        { type: TileType.Empty },
 
-                    { type: TileType.StraightLR, rotation: TileRotation.CW90 }
-                ]);
+                        { type: TileType.StraightLR, rotation: TileRotation.CW90 }
+                    ])
+                );
 
                 expect(store.connectionCount).toBe(1);
             });
@@ -98,18 +102,28 @@ describe("gameStore", () => {
         describe("given tiles are connected in corner", () => {
             it("should be 2", () => {
                 const store = new GameStore();
-                store.init([
-                    { type: TileType.Empty },
-                    { type: TileType.StraightLR },
-                    { type: TileType.BendLT, rotation: TileRotation.CW270 },
+                store.init(
+                    gameWithTiles([
+                        { type: TileType.Empty },
+                        { type: TileType.StraightLR },
+                        { type: TileType.BendLT, rotation: TileRotation.CW270 },
 
-                    { type: TileType.Empty },
-                    { type: TileType.Empty },
-                    { type: TileType.StraightLR, rotation: TileRotation.CW90 }
-                ]);
+                        { type: TileType.Empty },
+                        { type: TileType.Empty },
+                        { type: TileType.StraightLR, rotation: TileRotation.CW90 }
+                    ])
+                );
 
                 expect(store.connectionCount).toBe(2);
             });
         });
     });
+
+    function gameWithTiles(tiles: ITileState[]): IGameState {
+        return {
+            winConnectionCount: InfiniteGameNumber,
+            lossStepCount: InfiniteGameNumber,
+            tiles
+        };
+    }
 });

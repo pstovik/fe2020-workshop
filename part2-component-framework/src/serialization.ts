@@ -1,24 +1,57 @@
-import { ITileState, TileType, TileRotation } from "./iGameState";
+import { ITileState, TileType, TileRotation, IGameState, InfiniteGameNumber } from "./iGameState";
 
-export function serializeTiles(tiles: ITileState[]): string {
-    return tiles.map(tileStateToString).join("_");
+export function serializeGame(game: IGameState): string {
+    const tiles = game.tiles.map(tileStateToString).join("_");
+    return `${tiles}_W-${game.winConnectionCount}_L-${game.lossStepCount}`;
 }
 
-export function deserializeTiles(tilesString: string): ITileState[] {
-    return tilesString.split("_").map(tileStringToState);
+export function deserializeGame(gameString: string): IGameState {
+    const gameBuilder = new GameBuilder();
+    const tokens = gameString.split("_");
+    for (const token of tokens) {
+        const [param, value] = token.split("-");
+        gameBuilder.processParam(param, value);
+    }
+
+    return gameBuilder.build();
+}
+
+class GameBuilder {
+    private state: IGameState = {
+        tiles: [],
+        lossStepCount: InfiniteGameNumber,
+        winConnectionCount: InfiniteGameNumber
+    };
+
+    processParam(param: string, value: string): void {
+        switch (param) {
+            case "E":
+            case "B":
+            case "S":
+                this.state.tiles.push({
+                    type: tileStringToType[param],
+                    rotation: rotationStringToRotation[value as "0" | "90" | "180" | "270"]
+                });
+                break;
+            case "W":
+                this.state.winConnectionCount = parseInt(value);
+                break;
+            case "L":
+                this.state.lossStepCount = parseInt(value);
+                break;
+            default:
+                console.error(`Unknown parameter "${param}"`);
+            // throw new Error(`Unknown parameter "${param}"`);
+        }
+    }
+
+    build(): IGameState {
+        return this.state;
+    }
 }
 
 function tileStateToString(tile: ITileState): string {
     return tileTypeToString[tile.type] + "-" + tileRotationToString[tile.rotation || TileRotation.None];
-}
-
-function tileStringToState(tileString: string): ITileState {
-    const [typeString, rotationString] = tileString.split("-");
-
-    return {
-        type: tileStringToType[typeString as "E" | "B" | "S"],
-        rotation: rotationStringToRotation[rotationString as "0" | "90" | "180" | "270"]
-    };
 }
 
 const tileTypeToString = {
@@ -31,7 +64,7 @@ const tileStringToType = {
     E: TileType.Empty,
     B: TileType.BendLT,
     S: TileType.StraightLR
-} as const;
+};
 
 const tileRotationToString = {
     [TileRotation.None]: "0",

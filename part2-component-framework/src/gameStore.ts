@@ -1,14 +1,19 @@
-import { ITileState, TileType, TileRotation } from "./iGameState";
+import { ITileState, TileType, TileRotation, IGameState, InfiniteGameNumber } from "./iGameState";
 
 const TilesInOneRow = 3;
 
-export class GameStore {
+export class GameStore implements IGameState {
     tiles: ITileState[] = [];
     stepCount: number = 0;
     connectionCount: number = 0;
+    winConnectionCount: number = InfiniteGameNumber;
+    lossStepCount: number = 999;
 
-    init(tiles: ITileState[]): void {
-        this.tiles = tiles;
+    init(game: IGameState): void {
+        this.tiles = game.tiles;
+        this.winConnectionCount = game.winConnectionCount;
+        this.lossStepCount = game.lossStepCount;
+
         this.calculateConnections();
     }
 

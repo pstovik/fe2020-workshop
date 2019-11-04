@@ -2,7 +2,7 @@ import GameBoard from "./components/game-board";
 import Tile from "./components/tile";
 import * as framework from "./framework";
 import { GameStore } from "./gameStore";
-import { deserializeTiles } from "./serialization";
+import { deserializeGame } from "./serialization";
 import { defaultGame } from "./defaultGame";
 
 export class Application {
@@ -10,8 +10,8 @@ export class Application {
 
     constructor(locationHash?: string) {
         this._store = new GameStore();
-        const tiles = locationHash ? deserializeTiles(locationHash.substr(1)) : defaultGame();
-        this._store.init(tiles);
+        const game = locationHash ? deserializeGame(locationHash.substr(1)) : defaultGame();
+        this._store.init(game);
     }
 
     render(): string {

@@ -13,3 +13,4 @@
 - game board state can be changed by url hash modification
     - default game http://localhost:8080/
     - circle game http://localhost:8080/#B-180_S-0_B-270_S-90_E-0_S-90_B-90_S-0_B-0
+    - win count, loss count can be also passed http://localhost:8080/#B-180_S-0_B-270_S-90_E-0_S-90_B-90_S-0_B-0_W-5_L-20

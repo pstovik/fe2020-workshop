@@ -1,23 +1,27 @@
 import { GamePage } from "../cypress/pages/gamePage";
-import { serializeTiles } from "../src/dependencies";
-import { TileType, TileRotation } from "../../part2-component-framework/src/iGameState";
+import { serializeGame } from "../src/dependencies";
+import { TileType, TileRotation, InfiniteGameNumber } from "../../part2-component-framework/src/iGameState";
 
 let gamePage;
 
 beforeEach(() => {
-    const tilesString = serializeTiles([
-        { type: TileType.Empty },
-        { type: TileType.StraightLR },
-        { type: TileType.BendLT, rotation: TileRotation.CW270 },
+    const tilesString = serializeGame({
+        winConnectionCount: InfiniteGameNumber,
+        lossStepCount: InfiniteGameNumber,
+        tiles: [
+            { type: TileType.Empty },
+            { type: TileType.StraightLR },
+            { type: TileType.BendLT, rotation: TileRotation.CW270 },
 
-        { type: TileType.Empty },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.Empty },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
 
-        { type: TileType.Empty },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-        { type: TileType.Empty }
-    ]);
+            { type: TileType.Empty },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.Empty }
+        ]
+    });
     cy.visit(`/#${tilesString}`);
 });
 

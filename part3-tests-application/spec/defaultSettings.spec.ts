@@ -3,37 +3,35 @@ import { GamePage } from "../cypress/pages/gamePage";
 let gamePage = new GamePage(3, 3);
 
 beforeEach(() => {
-  cy.visit(Cypress.env('serverUrl'));
+    cy.visit(Cypress.env("serverUrl"));
 });
 
 describe("Test base game funcionality", () => {
-  it("Test game counters", () => {
+    it("Test game counters", () => {
+        //when
+        gamePage.gameBoard.rotateTile(1, 1);
 
-    //when  
-    gamePage.gameBoard.rotateTile(1, 1);
+        //then
+        AssertNumberOfStepsAndConection();
+    });
 
-    //then    
-    AssertNumberOfStepsAndConection();
-  });
+    it("Test rotation tile on game board", () => {
+        //given
+        AssertTileRotation(90);
 
-  it("Test rotation tile on game board", () => {
+        //when
+        gamePage.gameBoard.rotateTile(1, 1);
 
-    //given
-    AssertTileRotation(90);
-
-    //when  
-    gamePage.gameBoard.rotateTile(1, 1);
-
-    //then
-    AssertTileRotation(180);
-  });
+        //then
+        AssertTileRotation(180);
+    });
 });
 
 function AssertNumberOfStepsAndConection(): void {
-  gamePage.gameScorePanel.assertNumberOfSteps(1)
-  gamePage.gameScorePanel.assertNumberOfConnection(2)
+    gamePage.gameScorePanel.assertNumberOfSteps(1);
+    gamePage.gameScorePanel.assertNumberOfConnection(0);
 }
 
 function AssertTileRotation(angle: number) {
-  gamePage.gameBoard.assertActualRotation(1, 1, angle);
+    gamePage.gameBoard.assertActualRotation(1, 1, angle);
 }

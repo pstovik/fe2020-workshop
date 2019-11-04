@@ -1,5 +1,7 @@
 export interface IGameState {
     tiles: ITileState[];
+    winConnectionCount: number;
+    lossStepCount: number;
 }
 
 export interface ITileState {
@@ -19,3 +21,5 @@ export enum TileRotation {
     CW180 = 180,
     CW270 = 270
 }
+
+export const InfiniteGameNumber = 999;

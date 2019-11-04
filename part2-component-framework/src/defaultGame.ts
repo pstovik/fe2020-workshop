@@ -1,17 +1,21 @@
-import { ITileState, TileType, TileRotation } from "./iGameState";
+import { ITileState, TileType, TileRotation, IGameState } from "./iGameState";
 
-export function defaultGame(): ITileState[] {
-    return [
-        { type: TileType.Empty },
-        { type: TileType.StraightLR },
-        { type: TileType.BendLT, rotation: TileRotation.CW270 },
+export function defaultGame(): IGameState {
+    return {
+        winConnectionCount: 3, // TODO
+        lossStepCount: 5,
+        tiles: [
+            { type: TileType.Empty },
+            { type: TileType.StraightLR },
+            { type: TileType.BendLT, rotation: TileRotation.CW90 },
 
-        { type: TileType.Empty },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.Empty },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
 
-        { type: TileType.Empty },
-        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-        { type: TileType.Empty }
-    ];
+            { type: TileType.Empty },
+            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+            { type: TileType.Empty }
+        ]
+    };
 }
