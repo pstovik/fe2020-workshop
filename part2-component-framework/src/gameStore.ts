@@ -7,7 +7,15 @@ export class GameStore implements IGameState {
     stepCount: number = 0;
     connectionCount: number = 0;
     winConnectionCount: number = InfiniteGameNumber;
-    lossStepCount: number = 999;
+    lossStepCount: number = InfiniteGameNumber;
+
+    get isLostGame(): boolean {
+        return this.stepCount >= this.lossStepCount;
+    }
+
+    get isWinGame(): boolean {
+        return this.connectionCount >= this.winConnectionCount;
+    }
 
     init(game: IGameState): void {
         this.tiles = game.tiles;
