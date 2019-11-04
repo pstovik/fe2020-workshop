@@ -1,5 +1,5 @@
 export class GameCounter {
-    selector = "div.game-counter";
+    selector = "div.counter";
     scoreName: string;
 
     constructor(scoreName: string) {

@@ -36,7 +36,7 @@ describe("Check number of steps", () => {
         gamePage.gameBoard.rotateTile(0, 2, true);
 
         //then
-        gamePage.gameScorePanel.assertNumberOfSteps(4);
+        gamePage.gameScorePanel.assertCurrentStepsCount(4);
     });
 
     it("Empty tiles", () => {
@@ -47,6 +47,6 @@ describe("Check number of steps", () => {
         gamePage.gameBoard.rotateTile(0, 0, true);
 
         //then
-        gamePage.gameScorePanel.assertNumberOfSteps(0);
+        gamePage.gameScorePanel.assertCurrentStepsCount(0);
     });
 });

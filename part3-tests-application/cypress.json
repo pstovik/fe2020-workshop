@@ -9,6 +9,64 @@
 
     "env": {
         "serverUrl": "/",
-        "serverUrlBeforeFinish": "/#B-90_S-0_B-270_B-180_S-90_B-0_B-90_S-180_B-270"        
+        "serverUrlBeforeFinish": "/#B-90_S-0_B-270_B-180_S-90_B-0_B-90_S-180_B-270",
+        "gameScenario_1":
+        {
+            "url": "/#B-180_S-90_B-270_B-90_S-90_B-0_B-270_S-90_B-180_W-8_L-7",
+            "rows": 3,
+            "cols": 3,
+            "startConnections": 4,
+            "minConnections": 8,
+            "maxSteps": 7,
+            "victorySequence":
+            [
+                { "row": 0, "col": 1 },
+                { "row": 1, "col": 0 },
+                { "row": 1, "col": 1 },
+                { "row": 2, "col": 0 },
+                { "row": 2, "col": 0 },
+                { "row": 2, "col": 1 },
+                { "row": 2, "col": 2 }
+            ],
+            "failureSequence":
+            [
+                { "row": 0, "col": 0 },
+                { "row": 0, "col": 1 },
+                { "row": 0, "col": 2 },
+                { "row": 1, "col": 0 },
+                { "row": 1, "col": 1 },
+                { "row": 1, "col": 2 },
+                { "row": 2, "col": 0 }
+            ]
+        },
+        "gameScenario_2":
+        {
+            "url": "/#E-0_S-90_B-90_E-0_S-0_S-0_E-0_S-0_E-0_W-3_L-6",
+            "rows": 3,
+            "cols": 3,
+            "startConnections": 1,
+            "minConnections": 3,
+            "maxSteps": 6,
+            "victorySequence":
+            [
+                { "row": 0, "col": 0 },
+                { "row": 0, "col": 1 },
+                { "row": 0, "col": 2 },
+                { "row": 0, "col": 2 },
+                { "row": 1, "col": 1 },
+                { "row": 1, "col": 2 },
+                { "row": 2, "col": 1 }
+            ],
+            "failureSequence":
+            [
+                { "row": 0, "col": 0 },
+                { "row": 0, "col": 1 },
+                { "row": 0, "col": 1 },
+                { "row": 0, "col": 2 },
+                { "row": 1, "col": 2 },
+                { "row": 1, "col": 2 },
+                { "row": 2, "col": 1 }
+            ]
+        }
     }
 }

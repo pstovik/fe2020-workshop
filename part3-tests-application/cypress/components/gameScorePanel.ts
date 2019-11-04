@@ -2,19 +2,31 @@ import { GameCounter } from "./gameCounter";
 
 export class GameScorePanel {
     public selector = "div.game-score";
-    public stepsCounter: GameCounter;
-    public connectionCounter: GameCounter;
+    public currentStepsCounter: GameCounter;
+    public currectConnectionCounter: GameCounter;
+    public maxStepsCount: GameCounter;
+    public minConnectionsCount: GameCounter;
 
     constructor() {
-        this.stepsCounter = new GameCounter("Steps");
-        this.connectionCounter = new GameCounter("Connections");
+        this.currentStepsCounter = new GameCounter("Steps");
+        this.currectConnectionCounter = new GameCounter("Connections");
+        this.maxStepsCount = new GameCounter("Max steps");
+        this.minConnectionsCount = new GameCounter("Win connections");
     }
 
-    public assertNumberOfSteps(expectedScore: number): void {
-        this.stepsCounter.shouldHaveScore(expectedScore);
+    public assertCurrentStepsCount(expectedScore: number): void {
+        this.currentStepsCounter.shouldHaveScore(expectedScore);
     }
 
-    public assertNumberOfConnection(expectedScore: number): void {
-        this.connectionCounter.shouldHaveScore(expectedScore);
+    public assertCurrentConnectionsCount(expectedScore: number): void {
+        this.currectConnectionCounter.shouldHaveScore(expectedScore);
+    }
+
+    public assertMaxStepsCount(expectedScore: number): void {
+        this.maxStepsCount.shouldHaveScore(expectedScore);
+    }
+
+    public assertMinConnectionsCount(expectedScore: number): void {
+        this.minConnectionsCount.shouldHaveScore(expectedScore);
     }
 }

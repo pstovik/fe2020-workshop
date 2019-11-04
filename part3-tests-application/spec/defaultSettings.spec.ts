@@ -28,8 +28,8 @@ describe("Test base game funcionality", () => {
 });
 
 function AssertNumberOfStepsAndConection(): void {
-    gamePage.gameScorePanel.assertNumberOfSteps(1);
-    gamePage.gameScorePanel.assertNumberOfConnection(0);
+    gamePage.gameScorePanel.assertCurrentStepsCount(1);
+    gamePage.gameScorePanel.assertCurrentConnectionsCount(0);
 }
 
 function AssertTileRotation(angle: number) {
