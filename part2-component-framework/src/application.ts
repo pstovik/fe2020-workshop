@@ -17,11 +17,11 @@ export class Application {
     }
 
     render(): string {
-        if (this.store.isLostGame) {
-            return FullMessage({ message: `Sorry, you have lost after ${this.store.stepCount} steps.` });
-        }
         if (this.store.isWinGame) {
             return FullMessage({ message: `:-) You have won with ${this.store.connectionCount} connections!` });
+        }
+        if (this.store.isLostGame) {
+            return FullMessage({ message: `Sorry, you have lost after ${this.store.stepCount} steps.` });
         }
         return GameBoard({
             tiles: this.store.tiles.map<string>((t, index) =>
