@@ -2,11 +2,10 @@ import { GamePage } from "../cypress/pages/gamePage";
 
 let gamePage = new GamePage(3, 3);
 
-beforeEach(() => {
-    cy.visit(Cypress.env("serverUrl"));
-});
-
 describe("Test base game funcionality", () => {
+    beforeEach(() => {
+        cy.visit(Cypress.env("serverUrl"));
+    });
     it("Test game counters", () => {
         //when
         gamePage.gameBoard.rotateTile(1, 1);

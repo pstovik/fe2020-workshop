@@ -4,28 +4,28 @@ import { TileType, TileRotation, InfiniteGameNumber } from "../../part2-componen
 
 let gamePage;
 
-beforeEach(() => {
-    const tilesString = serializeGame({
-        winConnectionCount: InfiniteGameNumber,
-        lossStepCount: InfiniteGameNumber,
-        tiles: [
-            { type: TileType.Empty },
-            { type: TileType.StraightLR },
-            { type: TileType.BendLT, rotation: TileRotation.CW270 },
-
-            { type: TileType.Empty },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-
-            { type: TileType.Empty },
-            { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-            { type: TileType.Empty }
-        ]
-    });
-    cy.visit(`/#${tilesString}`);
-});
-
 describe("Check number of steps", () => {
+    beforeEach(() => {
+        const tilesString = serializeGame({
+            winConnectionCount: InfiniteGameNumber,
+            lossStepCount: InfiniteGameNumber,
+            tiles: [
+                { type: TileType.Empty },
+                { type: TileType.StraightLR },
+                { type: TileType.BendLT, rotation: TileRotation.CW270 },
+
+                { type: TileType.Empty },
+                { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+                { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+
+                { type: TileType.Empty },
+                { type: TileType.StraightLR, rotation: TileRotation.CW90 },
+                { type: TileType.Empty }
+            ]
+        });
+        cy.visit(`/#${tilesString}`);
+    });
+
     it("Non empty tiles", () => {
         gamePage = new GamePage(3, 3);
 
