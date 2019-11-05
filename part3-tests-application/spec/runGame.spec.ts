@@ -20,7 +20,7 @@ describe("Failure Cases", () => {
 });
 
 function runScenarioTest(scenarioName: string, scenarioEnding: GameEnding): void {
-    var test = testInit(scenarioName);
+    const test = testInit(scenarioName);
 
     let stepSequence;
     switch (scenarioEnding) {
@@ -39,8 +39,8 @@ function runScenarioTest(scenarioName: string, scenarioEnding: GameEnding): void
 }
 
 function testInit(scenarioName: string) {
-    var gameScenario = Cypress.env(scenarioName);
-    var gamePage = new GamePage(gameScenario.rows, gameScenario.cols);
+    const gameScenario = Cypress.env(scenarioName);
+    const gamePage = new GamePage(gameScenario.rows, gameScenario.cols);
 
     cy.visit(gameScenario.url);
     assertInitialState(gameScenario, gamePage);
