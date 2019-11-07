@@ -5,10 +5,12 @@ import { GameResult, GameEnding } from "../components/gameResult";
 export class GamePage {
     gameScorePanel: GameScorePanel;
     gameBoard: GameBoard;
+    gameResult: GameResult;
 
     constructor(width: number, height: number) {
         this.gameBoard = new GameBoard(width, height);
         this.gameScorePanel = new GameScorePanel();
+        this.gameResult = new GameResult();
     }
 
     public assertAngleRotation(x: number, y: number, angle: number): void {
@@ -16,6 +18,6 @@ export class GamePage {
     }
 
     public assertGameEnding(gameEnding: GameEnding): void {
-        new GameResult().assertGameEnding(gameEnding);
+        this.gameResult.assertGameEnding(gameEnding);
     }
 }
