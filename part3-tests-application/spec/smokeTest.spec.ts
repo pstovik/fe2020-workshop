@@ -3,34 +3,48 @@ import { GamePage } from "../cypress/pages/gamePage";
 let gamePage = new GamePage(3, 3);
 
 describe("Test base game funcionality", () => {
-    beforeEach(() => {
-        cy.visit(Cypress.env("serverUrl"));
-    });
-    it("Test game counters", () => {
-        //when
-        gamePage.gameBoard.rotateTile(1, 1);
+  beforeEach(() => {
+      cy.visit(Cypress.env("serverUrl"));
+  });
 
-        //then
-        AssertNumberOfStepsAndConection();
-    });
+  it("Test game counters", () => {
+    //when
+    gamePage.gameBoard.rotateTile(1, 1);
 
-    it("Test rotation tile on game board", () => {
-        //given
-        AssertTileRotation(90);
+    //then
+    AssertNumberOfStepsAndConection(1, 0);
+  });
 
-        //when
-        gamePage.gameBoard.rotateTile(1, 1);
+  it("Test rotation tile on game board", () => {
+    //given
+    AssertTileRotation(90);
 
-        //then
-        AssertTileRotation(180);
-    });
+    //when
+    gamePage.gameBoard.rotateTile(1, 1);
+
+    //then
+    AssertTileRotation(180);
+  });
+
+  it("Test rotation empty tile on game board", () => {
+    //given
+    AssertNumberOfStepsAndConection(0, 1);
+
+    //when
+    gamePage.gameBoard.rotateTile(0, 0);
+
+    //then
+    AssertNumberOfStepsAndConection(0, 1);
+  });
 });
 
-function AssertNumberOfStepsAndConection(): void {
-    gamePage.gameScorePanel.assertCurrentStepsCount(1);
-    gamePage.gameScorePanel.assertCurrentConnectionsCount(0);
+function AssertNumberOfStepsAndConection(stepsCount: number, connectionCount: number): void {
+  gamePage.gameScorePanel.assertCurrentStepsCount(stepsCount);
+  gamePage.gameScorePanel.assertCurrentConnectionsCount(connectionCount);
 }
 
 function AssertTileRotation(angle: number) {
-    gamePage.gameBoard.assertActualRotation(1, 1, angle);
+  gamePage.gameBoard.assertActualRotation(1, 1, angle);
 }
+
+
