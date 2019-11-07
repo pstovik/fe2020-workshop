@@ -1,59 +1,60 @@
 import { GamePage } from "../cypress/pages/gamePage";
 import { GameEnding } from "../cypress/components/gameResult";
+import { ScenarioSelector } from "../cypress/scenarios/scenarioSelector";
+import { ScenarioDefinition, ScenarioStep } from "../cypress/scenarios/scenarioDefinition";
 
 describe("Victory Cases", () => {
-    it("Game Scenario #1", () => {
-        runScenarioTest("gameScenario_1", GameEnding.Victory);
+    it("Game Scenario: Snake (3x3)", () => {
+        runScenarioTest(ScenarioSelector.Snake, GameEnding.Victory);
     });
-    it("Game Scenario #2", () => {
-        runScenarioTest("gameScenario_2", GameEnding.Victory);
+    it("game scenario: Logo (3x3)", () => {
+        runScenarioTest(ScenarioSelector.Logo, GameEnding.Victory);
     });
 });
 
 describe("Failure Cases", () => {
-    it("Game Scenario #1", () => {
-        runScenarioTest("gameScenario_1", GameEnding.Failure);
+    it("Game Scenario: Snake (3x3)", () => {
+        runScenarioTest(ScenarioSelector.Snake, GameEnding.Victory);
     });
-    it("Game Scenario #2", () => {
-        runScenarioTest("gameScenario_2", GameEnding.Failure);
+    it("Game Scenario: Logo (3x3)", () => {
+        runScenarioTest(ScenarioSelector.Logo, GameEnding.Failure);
     });
 });
 
-function runScenarioTest(scenarioName: string, scenarioEnding: GameEnding): void {
-    const test = testInit(scenarioName);
+function runScenarioTest(scenarioDefinition: ScenarioDefinition, scenarioEnding: GameEnding): void {
+    const gamePage = playgroundInitialize(scenarioDefinition);
 
     let stepSequence;
     switch (scenarioEnding) {
         case GameEnding.Victory:
-            stepSequence = test.gameScenario.victorySequence;
+            stepSequence = scenarioDefinition.getWinStepSequence();
             break;
         case GameEnding.Failure:
-            stepSequence = test.gameScenario.failureSequence;
+            stepSequence = scenarioDefinition.getLossStepSequence();
             break;
         default:
             throw new Error("Not implemented enum value");
     }
 
-    doScenarioSteps(test.gamePage, stepSequence);
-    assertGameEnding(test.gamePage, scenarioEnding);
+    doScenarioSteps(gamePage, stepSequence);
+    assertGameEnding(gamePage, scenarioEnding);
 }
 
-function testInit(scenarioName: string) {
-    const gameScenario = Cypress.env(scenarioName);
-    const gamePage = new GamePage(gameScenario.rows, gameScenario.cols);
+function playgroundInitialize(scenarioDefinition: ScenarioDefinition) {
+    const gamePage = new GamePage(scenarioDefinition.getRowCount(), scenarioDefinition.getColCount());
 
-    cy.visit(gameScenario.url);
-    assertInitialState(gameScenario, gamePage);
+    cy.visit(scenarioDefinition.getGameUrl());
+    assertInitialState(scenarioDefinition, gamePage);
 
-    return { gameScenario: gameScenario, gamePage: gamePage };
+    return gamePage;
 }
 
-function assertInitialState(gameScenario: any, gamePage: GamePage): void {
+function assertInitialState(scenarioDefinition: ScenarioDefinition, gamePage: GamePage): void {
     cy.log("Testing initial state of game board");
-    gamePage.gameScorePanel.assertCurrentConnectionsCount(gameScenario.startConnections);
+    gamePage.gameScorePanel.assertCurrentConnectionsCount(scenarioDefinition.getStartConnectionCount());
     gamePage.gameScorePanel.assertCurrentStepsCount(0);
-    gamePage.gameScorePanel.assertMaxStepsCount(gameScenario.maxSteps);
-    gamePage.gameScorePanel.assertMinConnectionsCount(gameScenario.minConnections);
+    gamePage.gameScorePanel.assertMaxStepsCount(scenarioDefinition.getLossStepCount());
+    gamePage.gameScorePanel.assertMinConnectionsCount(scenarioDefinition.getWinConnectionCount());
 }
 
 function assertGameEnding(gamePage: GamePage, expectedResult: GameEnding): void {
@@ -70,7 +71,7 @@ function assertGameEnding(gamePage: GamePage, expectedResult: GameEnding): void 
     gamePage.assertGameEnding(expectedResult);
 }
 
-function doScenarioSteps(gamePage: GamePage, scenarioSteps: any[]): void {
+function doScenarioSteps(gamePage: GamePage, scenarioSteps: ScenarioStep[]): void {
     cy.log("Performing steps sequence");
     scenarioSteps.forEach(step => {
         gamePage.gameBoard.rotateTile(step.row, step.col);
