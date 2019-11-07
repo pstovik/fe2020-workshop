@@ -27,6 +27,7 @@ describe("Check number of steps", () => {
     });
 
     it("Non empty tiles", () => {
+        //given
         gamePage = new GamePage(3, 3);
 
         //when
@@ -40,6 +41,7 @@ describe("Check number of steps", () => {
     });
 
     it("Empty tiles", () => {
+        //given
         gamePage = new GamePage(3, 3);
 
         //when
