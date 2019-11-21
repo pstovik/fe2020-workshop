@@ -9,8 +9,9 @@ export class GameBoard {
         this.height = height;
     }
 
-    public rotateTile(row: number, column: number, log: boolean = false) {
-        if (log) {
+    public rotateTile(params: { row: number; column: number; log?: boolean }) {
+        const { row, column, log } = params;
+        if (log === true) {
             cy.log("Rotating tile [row=" + row + "][column=" + column + "]");
         }
         new GameTile(this.getIndex(row, column)).rotateTile();

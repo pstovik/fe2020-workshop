@@ -31,10 +31,10 @@ describe("Check number of steps", () => {
         gamePage = new GamePage(3, 3);
 
         //when
-        gamePage.gameBoard.rotateTile(0, 1, true);
-        gamePage.gameBoard.rotateTile(0, 2, true);
-        gamePage.gameBoard.rotateTile(0, 1, true);
-        gamePage.gameBoard.rotateTile(0, 2, true);
+        gamePage.gameBoard.rotateTile({ row: 0, column: 1, log: true });
+        gamePage.gameBoard.rotateTile({ row: 0, column: 2, log: true });
+        gamePage.gameBoard.rotateTile({ row: 0, column: 1, log: true });
+        gamePage.gameBoard.rotateTile({ row: 0, column: 2, log: true });
 
         //then
         gamePage.gameScorePanel.assertCurrentStepsCount(4);
@@ -45,8 +45,8 @@ describe("Check number of steps", () => {
         gamePage = new GamePage(3, 3);
 
         //when
-        gamePage.gameBoard.rotateTile(2, 0, true);
-        gamePage.gameBoard.rotateTile(0, 0, true);
+        gamePage.gameBoard.rotateTile({ row: 2, column: 0, log: true });
+        gamePage.gameBoard.rotateTile({ row: 0, column: 0, log: true });
 
         //then
         gamePage.gameScorePanel.assertCurrentStepsCount(0);

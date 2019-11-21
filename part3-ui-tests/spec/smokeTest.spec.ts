@@ -9,10 +9,10 @@ describe("Test base game funcionality", () => {
 
     it("Test game counters", () => {
         //when
-        gamePage.gameBoard.rotateTile(1, 1);
+        gamePage.gameBoard.rotateTile({ row: 1, column: 1 });
 
         //then
-        AssertNumberOfStepsAndConection(1, 0);
+        AssertNumberOfStepsAndConection({ stepCount: 1, connectionCount: 0 });
     });
 
     it("Test rotation tile on game board", () => {
@@ -20,7 +20,7 @@ describe("Test base game funcionality", () => {
         AssertTileRotation(90);
 
         //when
-        gamePage.gameBoard.rotateTile(1, 1);
+        gamePage.gameBoard.rotateTile({ row: 1, column: 1 });
 
         //then
         AssertTileRotation(180);
@@ -28,19 +28,19 @@ describe("Test base game funcionality", () => {
 
     it("Test rotation empty tile on game board", () => {
         //given
-        AssertNumberOfStepsAndConection(0, 1);
+        AssertNumberOfStepsAndConection({ stepCount: 0, connectionCount: 1 });
 
         //when
-        gamePage.gameBoard.rotateTile(0, 0);
+        gamePage.gameBoard.rotateTile({ row: 0, column: 0 });
 
         //then
-        AssertNumberOfStepsAndConection(0, 1);
+        AssertNumberOfStepsAndConection({ stepCount: 0, connectionCount: 1 });
     });
 });
 
-function AssertNumberOfStepsAndConection(stepsCount: number, connectionCount: number): void {
-    gamePage.gameScorePanel.assertCurrentStepsCount(stepsCount);
-    gamePage.gameScorePanel.assertCurrentConnectionsCount(connectionCount);
+function AssertNumberOfStepsAndConection(params: { stepCount: number; connectionCount: number }): void {
+    gamePage.gameScorePanel.assertCurrentStepsCount(params.stepCount);
+    gamePage.gameScorePanel.assertCurrentConnectionsCount(params.connectionCount);
 }
 
 function AssertTileRotation(angle: number) {

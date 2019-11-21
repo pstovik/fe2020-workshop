@@ -74,6 +74,6 @@ function assertGameEnding(gamePage: GamePage, expectedResult: GameEnding): void 
 function doScenarioSteps(gamePage: GamePage, scenarioSteps: ScenarioStep[]): void {
     cy.log("Performing steps sequence");
     scenarioSteps.forEach(step => {
-        gamePage.gameBoard.rotateTile(step.row, step.col);
+        gamePage.gameBoard.rotateTile({ row: step.row, column: step.col });
     });
 }

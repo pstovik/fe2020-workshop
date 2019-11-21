@@ -6,7 +6,7 @@
   "scripts": {
     "install-modules": "npm i",
     "cypress-open": "npx cypress open",
-    "test-headless-all": "npx cypress run --spec ./spec/allTests.spec.ts",
+    "test-headless-all": "npx cypress run --spec ./spec/_allTests.spec.ts",
     "start-part2-server": "cd ../part2-component-framework && npm run watch"
   },
   "author": "",
