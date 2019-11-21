@@ -1,9 +1,10 @@
 {
-  "name": "cypress-ts-template",
-  "version": "1.0.0",
+  "name": "part3-ui-tests",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install-modules": "npm i",
     "cypress-open": "npx cypress open",
     "test-headless-all": "npx cypress run --spec ./spec/allTests.spec.ts",
     "start-part2-server": "cd ../part2-component-framework && npm run watch"

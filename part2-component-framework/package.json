@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index",
   "scripts": {
+    "install-modules": "npm i",
     "watch": "bb"
   },
   "author": "p.stovik",
