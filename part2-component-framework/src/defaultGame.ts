@@ -2,7 +2,7 @@ import { ITileState, TileType, TileRotation, IGameState } from "./iGameState";
 
 export function defaultGame(): IGameState {
     return {
-        winConnectionCount: 3, // TODO
+        winConnectionCount: 3,
         lossStepCount: 5,
         tiles: [
             { type: TileType.Empty },
