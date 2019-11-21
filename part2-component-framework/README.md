@@ -1,5 +1,9 @@
 # Part2
 
+## motivation
+- demonstrates component oriented thinking and DOM/HTML as the state projection using TypeScript
+- goal is to understand single source of truth principle (application state abstracted from the visualization)
+
 ## how this repo was created
 - used bobril-build configuration TODO (bobril.com/example/package.json)
     - ? with / without tslint configured
