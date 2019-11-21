@@ -1,5 +1,8 @@
 # Part1
 
+## motivation
+- on simple game demonstrates basic skills and core web development technologies (static HTML/CSS/JS website)
+
 ## how this repo was created
 - the starting point of raw HTML development https://html5boilerplate.com/ (version 7.2.0), extracted into `web` directory
 - installed simple webserver [node-static](https://www.npmjs.com/package/node-static)
