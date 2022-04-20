@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "bobril": {
-    "bbVersion": "0.96.2",
+    "bbVersion": "2.4.1",
     "tsVersion": "3.6.4",
     "compilerOptions": {
       "declaration": true,
@@ -23,6 +23,6 @@
     }
   },
   "devDependencies": {
-    "bobril-build": "^2.2.0"
+    "bobril-build": "2.4.0"
   }
 }
