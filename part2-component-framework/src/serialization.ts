@@ -1,3 +1,4 @@
+import { DefaultPlayerName } from "./defaultGame";
 import { ITileState, TileType, TileRotation, IGameState, InfiniteGameNumber } from "./iGameState";
 
 export function serializeGame(game: IGameState): string {
@@ -20,7 +21,8 @@ class GameBuilder {
     private state: IGameState = {
         tiles: [],
         lossStepCount: InfiniteGameNumber,
-        winConnectionCount: InfiniteGameNumber
+        winConnectionCount: InfiniteGameNumber,
+        playerName: DefaultPlayerName,
     };
 
     processParam(param: string, value: string): void {
@@ -30,7 +32,7 @@ class GameBuilder {
             case "S":
                 this.state.tiles.push({
                     type: tileStringToType[param],
-                    rotation: rotationStringToRotation[value as "0" | "90" | "180" | "270"]
+                    rotation: rotationStringToRotation[value as "0" | "90" | "180" | "270"],
                 });
                 break;
             case "W":
@@ -57,25 +59,25 @@ function tileStateToString(tile: ITileState): string {
 const tileTypeToString = {
     [TileType.Empty]: "E",
     [TileType.BendLT]: "B",
-    [TileType.StraightLR]: "S"
+    [TileType.StraightLR]: "S",
 } as const;
 
 const tileStringToType = {
     E: TileType.Empty,
     B: TileType.BendLT,
-    S: TileType.StraightLR
+    S: TileType.StraightLR,
 };
 
 const tileRotationToString = {
     [TileRotation.None]: "0",
     [TileRotation.CW90]: "90",
     [TileRotation.CW180]: "180",
-    [TileRotation.CW270]: "270"
+    [TileRotation.CW270]: "270",
 } as const;
 
 const rotationStringToRotation = {
     "0": TileRotation.None,
     "90": TileRotation.CW90,
     "180": TileRotation.CW180,
-    "270": TileRotation.CW270
+    "270": TileRotation.CW270,
 };

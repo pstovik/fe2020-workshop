@@ -1,6 +1,6 @@
 import { GameStore } from "../src/gameStore";
 import { TileRotation, TileType, ITileState, IGameState, InfiniteGameNumber } from "../src/iGameState";
-import { defaultGame } from "../src/defaultGame";
+import { defaultGame, DefaultPlayerName } from "../src/defaultGame";
 
 describe("gameStore", () => {
     it("should init default game", () => {
@@ -43,7 +43,8 @@ describe("gameStore", () => {
             store.init({
                 lossStepCount: 3,
                 tiles: [{ type: TileType.BendLT }],
-                winConnectionCount: InfiniteGameNumber
+                winConnectionCount: InfiniteGameNumber,
+                playerName: DefaultPlayerName,
             });
 
             expect(store.isLostGame).toBeFalsy();
@@ -63,7 +64,8 @@ describe("gameStore", () => {
             store.init({
                 lossStepCount: InfiniteGameNumber,
                 tiles: [{ type: TileType.StraightLR, rotation: TileRotation.CW90 }, { type: TileType.StraightLR }],
-                winConnectionCount: 1
+                winConnectionCount: 1,
+                playerName: DefaultPlayerName,
             });
 
             expect(store.isWinGame).toBeFalsy();
@@ -111,7 +113,7 @@ describe("gameStore", () => {
                         { type: TileType.Empty },
                         { type: TileType.StraightLR },
 
-                        { type: TileType.StraightLR }
+                        { type: TileType.StraightLR },
                     ])
                 );
 
@@ -128,7 +130,7 @@ describe("gameStore", () => {
                         { type: TileType.Empty },
                         { type: TileType.Empty },
 
-                        { type: TileType.StraightLR, rotation: TileRotation.CW90 }
+                        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
                     ])
                 );
 
@@ -147,7 +149,7 @@ describe("gameStore", () => {
 
                         { type: TileType.Empty },
                         { type: TileType.Empty },
-                        { type: TileType.StraightLR, rotation: TileRotation.CW90 }
+                        { type: TileType.StraightLR, rotation: TileRotation.CW90 },
                     ])
                 );
 
@@ -160,7 +162,8 @@ describe("gameStore", () => {
         return {
             winConnectionCount: InfiniteGameNumber,
             lossStepCount: InfiniteGameNumber,
-            tiles
+            tiles,
+            playerName: DefaultPlayerName,
         };
     }
 });

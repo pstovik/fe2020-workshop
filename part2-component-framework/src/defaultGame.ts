@@ -1,5 +1,7 @@
 import { ITileState, TileType, TileRotation, IGameState } from "./iGameState";
 
+export const DefaultPlayerName = "Anonymous";
+
 export function defaultGame(): IGameState {
     return {
         winConnectionCount: 3,
@@ -15,7 +17,8 @@ export function defaultGame(): IGameState {
 
             { type: TileType.Empty },
             { type: TileType.StraightLR, rotation: TileRotation.CW90 },
-            { type: TileType.Empty }
-        ]
+            { type: TileType.Empty },
+        ],
+        playerName: DefaultPlayerName,
     };
 }

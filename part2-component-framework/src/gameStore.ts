@@ -8,6 +8,7 @@ export class GameStore implements IGameState {
     connectionCount: number = 0;
     winConnectionCount: number = InfiniteGameNumber;
     lossStepCount: number = InfiniteGameNumber;
+    playerName: string = "";
 
     get isLostGame(): boolean {
         return this.stepCount >= this.lossStepCount;
@@ -21,6 +22,7 @@ export class GameStore implements IGameState {
         this.tiles = game.tiles;
         this.winConnectionCount = game.winConnectionCount;
         this.lossStepCount = game.lossStepCount;
+        this.playerName = game.playerName;
 
         this.calculateConnections();
     }
@@ -96,7 +98,7 @@ export class GameStore implements IGameState {
             top: rotatedArray[0],
             right: rotatedArray[1],
             bottom: rotatedArray[2],
-            left: rotatedArray[3]
+            left: rotatedArray[3],
         };
     }
 

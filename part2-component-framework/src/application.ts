@@ -24,6 +24,7 @@ export class Application {
             return FullMessage({ message: `Sorry, you have lost after ${this.store.stepCount} steps.` });
         }
         return GameBoard({
+            playerName: this.store.playerName,
             tiles: this.store.tiles.map<string>((t, index) =>
                 Tile({
                     componentId: `tile_${index}`,
@@ -33,15 +34,15 @@ export class Application {
                         console.log("clicked", `tile_${index}`);
                         this.store.tileClicked(index);
                         framework.update();
-                    }
+                    },
                 })
             ),
             counters: [
                 Counter({ label: "Connections", value: this.store.connectionCount }),
                 Counter({ label: "Win connections", value: this.store.winConnectionCount }),
                 Counter({ label: "Steps", value: this.store.stepCount }),
-                Counter({ label: "Max steps", value: this.store.lossStepCount })
-            ]
+                Counter({ label: "Max steps", value: this.store.lossStepCount }),
+            ],
         });
     }
 }
